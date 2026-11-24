@@ -744,7 +744,7 @@ export function settingsView(ctx) {
       }));
 
       byText(/^changelog$/i).forEach(b => b.addEventListener('click', () =>
-        window.open('https://github.com/YOUR_GITHUB_USER/IRANvito/releases', '_blank', 'noopener')));
+        window.open('https://github.com/IRANvito/IRANvito/releases', '_blank', 'noopener')));
 
       byText(/^download$/i).forEach(b => b.addEventListener('click', () => {
         location.href = api.backupExportURL();

@@ -2,7 +2,7 @@
 #
 # IRANvito installer — one command on the VPS (as root):
 #
-#   bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/IRANvito/main/install.sh)
+#   bash <(curl -fsSL https://raw.githubusercontent.com/IRANvito/IRANvito/main/install.sh)
 #
 # It downloads the prebuilt release tar.gz for this architecture into
 # /root/IRANvito and installs the binary, verifying it against the checksum
@@ -27,7 +27,7 @@ info() { echo -e "${WHITE}[*]${NC} $*"; }
 warn() { echo -e "${GRAY}[!]${NC} $*"; }
 err()  { echo -e "${RED}[x]${NC} $*" >&2; }
 
-REPO="YOUR_GITHUB_USER/IRANvito"
+REPO="IRANvito/IRANvito"
 BIN_PATH="/usr/local/bin/iranvito"
 INSTALL_DIR="/root/IRANvito"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-/tmp}")" 2>/dev/null && pwd || echo /tmp)"

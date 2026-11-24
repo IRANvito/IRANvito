@@ -5,7 +5,7 @@
 One command as root on the VPS:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/IRANvito/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/IRANvito/IRANvito/main/install.sh)
 ```
 
 It downloads the prebuilt release archive for your architecture (amd64/arm64)
@@ -35,7 +35,7 @@ Download the release on any machine **with** internet, copy it to the server, an
 install it there. Nothing is fetched from the VPS.
 
 
-From the [releases page](https://github.com/YOUR_GITHUB_USER/IRANvito/releases/latest),
+From the [releases page](https://github.com/IRANvito/IRANvito/releases/latest),
 download the archive for the server's architecture — run `uname -m` on it:
 `x86_64` → `iranvito_linux_amd64.tar.gz`, `aarch64` → `iranvito_linux_arm64.tar.gz`.
 

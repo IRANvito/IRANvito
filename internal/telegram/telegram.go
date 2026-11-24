@@ -746,7 +746,7 @@ func webUIText(lang string) string {
 
 func supportText(lang string) string {
 	return b("💛 "+tr(lang, "Support")) + "\n\n" +
-		"GitHub : https://github.com/YOUR_GITHUB_USER\n" +
+		"GitHub : https://github.com/IRANvito\n" +
 		"Channel : https://t.me/YOUR_TELEGRAM\n\n" +
 		"🔺 Tron [ TRX ] :\n" + code("TTzuUAtsEsrLgNpFVLNTyLVJVRRFNWESYc") + "\n\n" +
 		"💠 USDT [ BEP20 ] :\n" + code("0xc112AE9bfF7c59dEcFb34E988A397848D3093E82") + "\n\n" +

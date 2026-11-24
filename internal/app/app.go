@@ -14,7 +14,7 @@ const (
 
 	// RepoOwner/RepoName identify the GitHub repository used by the installer
 	// and the release-based updater.
-	RepoOwner = "YOUR_GITHUB_USER"
+	RepoOwner = "IRANvito"
 	RepoName  = "IRANvito"
 
 	// SourceURL is where the source lives, printed with the version.

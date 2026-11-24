@@ -5,11 +5,11 @@
 # بک‌پک 🎒
 
 <p align="center">
-  <a href="go.mod"><img alt="Go version" src="https://img.shields.io/github/go-mod/go-version/YOUR_GITHUB_USER/IRANvito?logo=go&label=Go"></a>
-  <a href="https://github.com/YOUR_GITHUB_USER/IRANvito/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/YOUR_GITHUB_USER/IRANvito?logo=github&label=release&color=blue"></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/YOUR_GITHUB_USER/IRANvito?color=green"></a>
-  <a href="https://github.com/YOUR_GITHUB_USER/IRANvito/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/YOUR_GITHUB_USER/IRANvito?style=flat&logo=github&color=yellow"></a>
-  <a href="https://github.com/YOUR_GITHUB_USER/IRANvito/releases"><img alt="Total downloads across all releases" src="https://img.shields.io/github/downloads/YOUR_GITHUB_USER/IRANvito/total?logo=github&label=total%20downloads&color=orange"></a>
+  <a href="go.mod"><img alt="Go version" src="https://img.shields.io/github/go-mod/go-version/IRANvito/IRANvito?logo=go&label=Go"></a>
+  <a href="https://github.com/IRANvito/IRANvito/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/IRANvito/IRANvito?logo=github&label=release&color=blue"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/IRANvito/IRANvito?color=green"></a>
+  <a href="https://github.com/IRANvito/IRANvito/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/IRANvito/IRANvito?style=flat&logo=github&color=yellow"></a>
+  <a href="https://github.com/IRANvito/IRANvito/releases"><img alt="Total downloads across all releases" src="https://img.shields.io/github/downloads/IRANvito/IRANvito/total?logo=github&label=total%20downloads&color=orange"></a>
 </p>
 
 **بک‌پک** یک هستهٔ تونل با کارایی بالاست که کاملاً با **Go** نوشته شده و برای
@@ -45,7 +45,7 @@ IP Spoofing، SNI Spoofing و GRE هستند).
 </div>
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/IRANvito/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/IRANvito/IRANvito/main/install.sh)
 ```
 
 <div dir="rtl">

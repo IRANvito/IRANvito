@@ -28,7 +28,7 @@ function links(root, close) {
   const open = url => window.open(url, '_blank', 'noopener');
   root.querySelectorAll('button').forEach(b => {
     const t = b.textContent.trim().toLowerCase();
-    if (t.includes('github')) b.addEventListener('click', () => open('https://github.com/YOUR_GITHUB_USER/IRANvito'));
+    if (t.includes('github')) b.addEventListener('click', () => open('https://github.com/IRANvito/IRANvito'));
     else if (t.includes('telegram')) b.addEventListener('click', () => open('https://t.me/YOUR_TELEGRAM'));
     else if (t === 'later') b.addEventListener('click', close);
     else if (t === 'do not ask again') b.addEventListener('click', () => {

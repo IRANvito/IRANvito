@@ -9,20 +9,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/YOUR_GITHUB_USER/IRANvito/releases/latest">
-    <img src="https://img.shields.io/github/v/release/YOUR_GITHUB_USER/IRANvito?logo=github&label=release&color=orange" alt="Latest release">
+  <a href="https://github.com/IRANvito/IRANvito/releases/latest">
+    <img src="https://img.shields.io/github/v/release/IRANvito/IRANvito?logo=github&label=release&color=orange" alt="Latest release">
   </a>
   <a href="go.mod">
-    <img src="https://img.shields.io/github/go-mod/go-version/YOUR_GITHUB_USER/IRANvito?logo=go&label=Go" alt="Go version">
+    <img src="https://img.shields.io/github/go-mod/go-version/IRANvito/IRANvito?logo=go&label=Go" alt="Go version">
   </a>
   <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/YOUR_GITHUB_USER/IRANvito?color=orange" alt="License">
+    <img src="https://img.shields.io/github/license/IRANvito/IRANvito?color=orange" alt="License">
   </a>
-  <a href="https://github.com/YOUR_GITHUB_USER/IRANvito/stargazers">
-    <img src="https://img.shields.io/github/stars/YOUR_GITHUB_USER/IRANvito?style=flat&logo=github&color=orange" alt="GitHub stars">
+  <a href="https://github.com/IRANvito/IRANvito/stargazers">
+    <img src="https://img.shields.io/github/stars/IRANvito/IRANvito?style=flat&logo=github&color=orange" alt="GitHub stars">
   </a>
-  <a href="https://github.com/YOUR_GITHUB_USER/IRANvito/releases">
-    <img src="https://img.shields.io/github/downloads/YOUR_GITHUB_USER/IRANvito/total?logo=github&label=downloads&color=orange" alt="Downloads">
+  <a href="https://github.com/IRANvito/IRANvito/releases">
+    <img src="https://img.shields.io/github/downloads/IRANvito/IRANvito/total?logo=github&label=downloads&color=orange" alt="Downloads">
   </a>
 </p>
 
@@ -44,7 +44,7 @@
 On both servers:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/IRANvito/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/IRANvito/IRANvito/main/install.sh)
 ```
 
 Then:
