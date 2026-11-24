@@ -1,0 +1,49 @@
+package cmd
+
+import (
+	"errors"
+	"fmt"
+
+	"github.com/iranvito/iranvito/config"
+	"github.com/iranvito/iranvito/internal/tunnel/l3"
+)
+
+// checkEngine reports whether the engine this configuration selects can be
+// built from it — the checks the engines themselves make before opening
+// anything, run early so a reload can refuse a file instead of dying on it.
+func checkEngine(cfg *config.Config) error {
+	switch {
+	case cfg.L3.Enabled():
+		tunnelCfg, err := l3ConfigOf(cfg)
+		if err != nil {
+			return fmt.Errorf("layer-3 tunnel: %w", err)
+		}
+		if _, err := l3.New(tunnelCfg, nil); err != nil {
+			return fmt.Errorf("layer-3 tunnel configuration is not usable: %w", err)
+		}
+		if _, err := l3.NewForwarder(tunnelCfg, nil); err != nil {
+			return fmt.Errorf("layer-3 tunnel port mappings are not usable: %w", err)
+		}
+		return nil
+
+	case cfg.Direct.Present():
+		// Removed in v2.0.0, with no engine left to ask. Refused here, which is
+		// what start, reload and `iranvito check` all go through, so the three
+		// say the same thing — see docs/adr/0002.
+		return config.ErrDirectRemoved
+	}
+
+	switch {
+	case cfg.Server.BindAddr != "":
+		if !config.IsReverseTransport(cfg.Server.Transport) {
+			return fmt.Errorf("[server] transport %q is not one this engine has", cfg.Server.Transport)
+		}
+	case cfg.Client.RemoteAddr != "":
+		if !config.IsReverseTransport(cfg.Client.Transport) {
+			return fmt.Errorf("[client] transport %q is not one this engine has", cfg.Client.Transport)
+		}
+	default:
+		return errors.New("neither server nor client configuration is properly set")
+	}
+	return nil
+}

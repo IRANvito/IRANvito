@@ -1,0 +1,215 @@
+/* Page, sections, server strip, warn bar, empty state.
+ * Ported verbatim from the approved preview — the design that was signed
+ * off, not a re-drawing of it. Class names are kept so the markup matches.
+ */
+
+/* ===================== dashboard shell ===================== */
+.page{max-width:1300px;margin:0 auto;padding:0 clamp(14px,3vw,26px) 70px}
+
+/* header */
+
+
+
+
+
+
+
+
+
+/* banner for the states that look fine but are not */
+.warnbar{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;border-radius:14px;margin-bottom:12px;
+  border:1px solid color-mix(in srgb,var(--wr) 32%,transparent);
+  background:color-mix(in srgb,var(--wr) 8%,transparent)}
+.warnbar.bad{border-color:color-mix(in srgb,var(--er) 32%,transparent);
+  background:color-mix(in srgb,var(--er) 8%,transparent)}
+.warnbar .ic{width:26px;height:26px;border-radius:8px;flex:none;display:grid;place-items:center;font-size:13px;
+  font-weight:600;background:color-mix(in srgb,var(--wr) 20%,transparent);color:var(--wr)}
+.warnbar.bad .ic{background:color-mix(in srgb,var(--er) 18%,transparent);color:var(--er)}
+.warnbar .tx{flex:1;min-width:0}
+.warnbar .tx b{display:block;font-size:12.5px;font-weight:640;margin-bottom:3px}
+.warnbar .tx span{display:block;font-size:11.5px;color:var(--tx2);line-height:1.55}
+.warnbar .act{flex:none;font:inherit;font-size:11.5px;font-weight:600;padding:7px 12px;border-radius:10px;
+  cursor:pointer;background:var(--sunk);border:1px solid var(--ln2);color:var(--tx)}
+.warnbar .act:hover{background:var(--ln)}
+
+/* the server strip */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(336px,1fr));gap:16px}
+
+/* empty state */
+.empty{grid-column:1/-1;border:1px dashed var(--ln2);border-radius:18px;padding:44px 20px;text-align:center}
+.empty b{display:block;font-size:14.5px;font-weight:620;letter-spacing:0;margin-bottom:6px}
+.empty span{display:block;font-size:12.5px;color:var(--dim);line-height:1.6;max-width:52ch;margin:0 auto 16px}
+
+/* ---------- the whole page reacts, not just the header ---------- */
+
+.stick{position:sticky;top:0;z-index:40;margin:0 calc(-1 * clamp(12px,3vw,26px));
+  padding:0 clamp(12px,3vw,26px);
+  background:var(--bg)}
+
+
+
+
+
+
+
+/* section heading */
+
+/* the grid already reflows; on a phone one column reads better than a squeezed two */
+@container pg (max-width:560px){ #grid{grid-template-columns:1fr} }
+
+/* warnings */
+@container pg (max-width:560px){
+  .warnbar{flex-wrap:wrap}
+  .warnbar .act{width:100%;margin-top:4px}
+}
+.warnbar .tx code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;
+  background:var(--sunk);padding:1px 5px;border-radius:4px}
+[data-state="empty"] #grid{display:none}
+[data-state="normal"] .emptybox{display:none}
+[data-state="warn"] .emptybox{display:none}
+
+/* ---- the page shell the preview wrapped everything in ---- */
+
+/* ============ the assembled panel ============ */
+/* The panel is transparent and the ground is on the body, so the bars behind
+   it show through. Every surface on the page carries its own background, so
+   nothing that has to be read sits on the gradient directly. */
+.panel{container-type:inline-size;container-name:pg;background:transparent;color:var(--tx);
+  position:relative;z-index:1}
+
+.panel .inner2{padding:0 clamp(12px,3vw,24px) 26px}
+/* One width on every desktop. A laptop and an ultrawide monitor draw the same
+   page at the same size, centred, with the rest of the window left clear —
+   stretched across 3440 pixels the cards were long thin strips. Below that
+   width (a tablet, a phone) the panel fills the screen as before, with only
+   the usual gutter at its edges.
+
+   It is a limit on .panel itself, not on .inner2, because .panel is the
+   container every layout below queries: a limit inside it would leave those
+   queries measuring a width the content no longer has. */
+.panel{max-width:1100px;margin:0 auto}
+.panel .stickH{position:sticky;top:0;z-index:40;margin:0 calc(-1*clamp(12px,3vw,24px));
+  padding:0 clamp(12px,3vw,24px);background:var(--bg)}
+.panel .stickH .HH{background:transparent}
+.panel .sectitle{display:flex;align-items:center;gap:9px;margin:22px 0 11px}
+.panel .sectitle h3{font-size:12px;font-weight:600;letter-spacing:0;color:var(--dim)}
+.panel .sectitle .ln{flex:1;height:1px;background:var(--ln)}
+
+/* resources — V3 */
+.panel .RZ{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);
+  border:1px solid var(--ln);border-radius:15px;overflow:hidden}
+@container pg (max-width:1000px){ .panel .RZ{grid-template-columns:repeat(2,1fr)} }
+/* Two across, never one.
+ *
+ * Below 520px these used to stack into a single column: four tiles one under
+ * another, then two more for the rates, and the whole strip pushed the page it
+ * is meant to sit above off the screen. Two and two keeps Processor beside
+ * Memory and Disk beside Swap — the pairs anyone reads together — and keeps the
+ * strip short enough to be a strip. */
+@container pg (max-width:520px){
+  .panel .RZ{grid-template-columns:repeat(2,1fr)}
+  .panel .RZ .t4{padding:11px 12px 10px}
+  .panel .RZ .head6 .num{font-size:17px}
+}
+@container pg (max-width:430px){ .panel .RZ .trend{display:none} .panel .RZ .t4{padding:12px 12px 11px} }
+/* A grid item's min-width is auto, so a long figure can widen its own track. */
+.panel .RZ .t4{min-width:0}
+.panel .RZ .t4 .s{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* tunnels */
+.panel .sech2{display:flex;align-items:center;gap:11px;margin:22px 0 12px}
+.panel .sech2 h2{font-size:17px;font-weight:600;letter-spacing:-.028em}
+.panel .sech2 .cnt{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:9px;background:var(--sunk);color:var(--mu)}
+.panel .sech2 .sp{flex:1}
+.panel .sech2 .sb{font:inherit;font-size:12.5px;font-weight:590;padding:9px 15px;border-radius:11px;cursor:pointer;
+  background:var(--s1);border:1px solid var(--ln);color:var(--tx)}
+.panel .sech2 .sb.primary{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.panel .grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(322px,1fr));gap:14px}
+@container pg (max-width:700px){ .panel .grid3{grid-template-columns:1fr} }
+@container pg (max-width:520px){
+  .panel .sech2{flex-wrap:wrap}
+  .panel .sech2 .sp{display:none}
+  .panel .sech2 h2{flex:1}
+  .panel .sech2 .sb{flex:1;text-align:center}
+}
+/* the card is already fluid; only its action row needs help when very narrow */
+@container pg (max-width:360px){ .panel .c7 .foot .upt{display:none} }
+
+/* warning */
+.panel .warnbar{margin-top:14px}
+@container pg (max-width:520px){
+  .panel .warnbar{flex-wrap:wrap}
+  .panel .warnbar .act{width:100%;margin-top:4px}
+}
+
+/* ---- boot ----------------------------------------------------------------
+   Held until the first read of the host and the tunnels resolves. */
+#boot{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:var(--bg);transition:opacity .55s ease,visibility .55s ease}
+#boot.gone{opacity:0;visibility:hidden;pointer-events:none}
+.boot-stage{display:flex;flex-direction:column;align-items:center;width:min(260px,78vw)}
+.boot-mark{position:relative;width:66px;height:66px;display:grid;place-items:center;margin-bottom:16px}
+.boot-mark .ring{position:absolute;inset:0;transform:rotate(-90deg)}
+.boot-mark .trk{stroke:var(--ln2);stroke-width:2;fill:none}
+.boot-mark .arc{stroke:var(--tx2);stroke-width:2;stroke-linecap:round;fill:none;
+  stroke-dasharray:194;stroke-dashoffset:194;transition:stroke-dashoffset .4s var(--spring)}
+.boot-in{width:46px;height:46px;border-radius:15px;background:var(--tx);color:var(--bg);
+  display:grid;place-items:center}
+.boot-in svg{width:23px;height:23px}
+.boot-title{font-size:20px;font-weight:600;letter-spacing:-.03em}
+.boot-sub{font-size:12.5px;color:var(--dim);margin-top:3px;min-height:18px}
+.boot-reads{width:100%;margin-top:20px;display:flex;flex-direction:column;gap:7px}
+.boot-read{display:flex;align-items:center;gap:9px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11px;color:var(--faint)}
+.boot-read .ln{flex:1;height:2px;border-radius:1px;background:var(--sunk);overflow:hidden}
+.boot-read .ln i{display:block;height:100%;width:0;background:var(--ln3);transition:width .3s var(--spring)}
+.boot-read.done{color:var(--mu)}
+.boot-read.done .ln i{width:100%;background:var(--tx2)}
+
+/* the theme button borrows the palette chip's shape */
+.HH .pal2{border:1px solid var(--ln);background:var(--s1);color:var(--mu);cursor:pointer}
+.HH .pal2:hover{background:var(--sunk);color:var(--tx)}
+
+/* The two rates get the strip treatment, side by side. */
+.panel .RZ.rates { margin-top: 9px; grid-template-columns: repeat(2, 1fr); }
+/* The two rates stay side by side too, for the same reason. */
+
+/* Everything under them that is only text. */
+.panel .factline {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+  margin-top: 10px; padding: 0 2px;
+  font-size: 11.5px; color: var(--dim);
+}
+.panel .factline b { font-weight: 620; color: var(--tx2); font-variant-numeric: tabular-nums; }
+.panel .factline .cap { color: var(--faint); }
+.panel .factline .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--faint); }
+
+/* ---- installed as an app -------------------------------------------------
+   body.app is set by js/ui/pwa.js when the panel runs from the home screen:
+   full screen, no browser bar, the status bar drawn over the page. The header
+   and the bottom edge keep clear of the notch and the home indicator, and the
+   page stops rubber-banding and flashing a grey box on every tap, which is
+   what gives a web page away inside an app frame. */
+body.app{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent}
+body.app .panel .stickH{padding-top:env(safe-area-inset-top)}
+body.app .panel .inner2{padding-left:max(clamp(12px,3vw,24px),env(safe-area-inset-left));
+  padding-right:max(clamp(12px,3vw,24px),env(safe-area-inset-right));
+  padding-bottom:calc(26px + env(safe-area-inset-bottom))}
+body.app .toastZ{bottom:calc(26px + env(safe-area-inset-bottom))}
+body.app #boot{padding-top:env(safe-area-inset-top)}
+body.app button,body.app .dock,body.app .HH{-webkit-user-select:none;user-select:none}
